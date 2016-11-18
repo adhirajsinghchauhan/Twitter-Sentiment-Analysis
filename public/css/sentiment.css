@@ -1,0 +1,132 @@
+#graph-container {
+
+	/*width: 200vw;*/
+	height: 50vh;
+}
+
+#loader {
+
+	/*width: 100%;*/
+}
+
+.ct-line.ct-threshold-above,
+.ct-point.ct-threshold-above,
+.ct-bar.ct-threshold-above {
+	stroke: #4caf50 !important;
+}
+
+.ct-line.ct-threshold-below,
+.ct-point.ct-threshold-below,
+.ct-bar.ct-threshold-below {
+	stroke: #f44336 !important;
+}
+
+.ct-area.ct-threshold-above {
+	fill: #4caf50 !important;
+}
+
+.ct-area.ct-threshold-below {
+	fill: #f44336 !important;
+}
+
+.ct-zoom-rect {
+	fill: rgba(200, 100, 100, 0.3);
+	stroke: #f44336;
+}
+
+#alchemy {
+	margin-top: 50px;
+}
+
+.node {
+	font-size: 18px;
+}
+
+#itt-results {
+	background: #fff !important;
+}
+
+.tweet-results {
+	width: 100%;
+	overflow: visible;
+}
+
+.ct-chart > svg {
+	cursor: default;
+}
+
+.ct-point {
+	cursor: pointer;
+}
+
+.left {
+	float: left;
+	width: 50%;
+}
+
+.right {
+	float: right;
+	width: 50%;
+	border-left: 1px dashed;
+	padding-left: 21px;
+}
+
+.name {
+	background: rgba(0, 0, 0, 0.25);
+	padding: 16px;
+}
+
+.screenName {
+	position: relative;
+	bottom: 0;
+	left: 0;
+	font-size: 12px;
+	color: #eee;
+}
+
+.demo-card-wide.mdl-card {
+	width: 100%;
+	margin: 16px;
+}
+
+.demo-card-wide > .mdl-card__title {
+	color: #fff;
+	height: 176px;
+}
+
+.demo-card-wide > .mdl-card__menu {
+	color: #fff;
+}
+
+article {
+	background: #fff;
+	display: block;
+	padding: 18px;
+	border: 1px solid #eee;
+	margin-top: 21px;
+	margin-bottom: 21px;
+	overflow: hidden;	/*box-shadow: 6px 4px 9px 1px rgba(119, 119, 119, 0.75);*/
+
+	/*-moz-box-shadow: 6px 4px 9px 1px rgba(119, 119, 119, 0.75);*/
+
+	/*-webkit-box-shadow: 6px 4px 9px 1px rgba(119, 119, 119, 0.75);*/
+}
+
+article img {
+	width: 64px;
+	float: left;
+	margin: 0 5px 0 0;
+}
+
+.right table {
+	width: 100%;
+}
+
+.right table,
+.right table td {
+	border: 1px solid;
+}
+
+.right table td {
+	width: 50%;
+}

@@ -1,0 +1,409 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+	<meta charset = "utf-8">
+	<meta http-equiv = "X-UA-Compatible" content = "IE = edge">
+	<title>Twitter Sentiment Analysis &mdash; ITT Project</title>
+	<meta name = "viewport" content = "width = device-width, initial-scale = 1">
+	<meta name = "description" content = "Twitter Sentiment Analysis" />
+	<meta name = "keywords" content = "twitter, sentiment, analysis, ITT, project" />
+	<meta name = "author" content = "Adhiraj Singh Chauhan" />
+
+	<!-- Facebook and Twitter integration -->
+	<meta property = "og:title" content = "Twitter Sentiment Analysis" />
+	<meta property = "og:image" content = "" />
+	<meta property = "og:url" content = "" />
+	<meta property = "og:site_name" content = "" />
+	<meta property = "og:description" content = "" />
+	<meta name = "twitter:title" content = "Twitter Sentiment Analysis" />
+	<meta name = "twitter:image" content = "" />
+	<meta name = "twitter:url" content = "" />
+	<meta name = "twitter:card" content = "" />
+
+	<script type = "text/javascript" src = "js/jquery.min.js"></script>
+	<script type = "text/javascript" src = "js/material.min.js"></script>
+	<script type = "text/javascript" src = "js/d3.min.js"></script>
+	<script type = "text/javascript" src = "js/lodash.js"></script>
+	<script type = "text/javascript" src = "js/alchemy.js"></script>
+	<script src = "js/modernizr-2.6.2.min.js"></script>
+	<script src = "js/chartist.min.js"></script>
+	<script src = "js/chartist-plugin-tooltip.min.js"></script>
+	<script src = "js/chartist-plugin-threshold.min.js"></script>
+	<script src = "js/chartist-plugin-zoom.min.js"></script>
+	<!-- FOR IE9 below -->
+	<!--[if lt IE 9]>
+	<script src = "js/respond.min.js"></script>
+	<![endif]-->
+
+	<link rel = "stylesheet" href = "css/animate.css">
+	<link rel = "stylesheet" href = "css/bootstrap.css">
+	<link rel = "stylesheet" href = "css/font-awesome.min.css">
+	<link rel = "stylesheet" href = "css/alchemy.css">
+	<link rel = "stylesheet" href = "css/material.min.css">
+	<link rel = "stylesheet" href = "css/sentiment.css">
+	<link rel = "stylesheet" href = "css/style.css">
+	<link rel = "stylesheet" href = "css/chartist.min.css">
+	<link rel = "stylesheet" href = "css/chartist-plugin-tooltip.css">
+
+	</head>
+	<body>
+
+	<div class = "itt-loader"></div>
+
+	<div id = "page">
+	<nav class = "itt-nav" role = "navigation">
+		<div class = "itt-container">
+			<div class = "row">
+				<div class = "col-md-12 text-right itt-contact">
+					<ul class = "">
+						<li><a href = "tel://9591392237"><i class = "fa fa-phone">&nbsp;</i>+91 95913 92237</a></li>
+						<li><a href = "https://twitter.com/adhirajaddy1" target = "_blank"><i class = "fa fa-twitter"></i></a></li>
+						<li><a href = "https://fb.com/adhirajsinghchauhan" target = "_blank"><i class = "fa fa-facebook"></i></a></li>
+						<li><a href = "mailto:adhirajsinghchauhan@gmail.com"><i class = "fa fa-envelope"></i></a></li>
+					</ul>
+				</div>
+			</div>
+			<div class = "row">
+				<div class = "col-sm-4 col-xs-12">
+					<div id = "itt-logo"><a href = "/">TSA<em>.</em></a></div>
+				</div>
+				<div class = "col-xs-8 text-right menu-1">
+					<ul>
+						<li class = "active"><a href = "/">Home</a></li>
+						<li><a href = "about">About</a></li>
+						<!-- <li class = "has-dropdown">
+							<a href = "services">Services</a>
+							<ul class = "dropdown">
+								<li><a href = "#">Web Design</a></li>
+								<li><a href = "#">eCommerce</a></li>
+								<li><a href = "#">Branding</a></li>
+								<li><a href = "#">API</a></li>
+							</ul>
+						</li>
+						<li class = "has-dropdown">
+							<a href = "#">Dropdown</a>
+							<ul class = "dropdown">
+								<li><a href = "#">HTML5</a></li>
+								<li><a href = "#">CSS3</a></li>
+								<li><a href = "#">Sass</a></li>
+								<li><a href = "#">jQuery</a></li>
+							</ul>
+						</li> -->
+						<li><a href = "account">Account</a></li>
+						<li><a class = "js-gotocontact">Contact</a></li>
+					</ul>
+				</div>
+			</div>
+
+		</div>
+	</nav>
+
+	<header id = "itt-header" class = "itt-cover itt-cover-xs" role = "banner" style = "background-image:url(images/img_bg_1.jpg);">
+		<div class = "overlay"></div>
+		<div class = "itt-container">
+			<div class = "row">
+				<div class = "col-md-8 col-md-offset-2 text-center">
+					<div class = "display-t">
+						<div class = "display-tc">
+							<h1 class = "animate-box" data-animate-effect = "fadeInUp">Demo</h1>
+							<h2 class = "animate-box" data-animate-effect = "fadeInUp">Check out the demo of the project. This will be limited to 50 API calls per day.</h2>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</header>
+
+	<div class = "itt-section" style = "background: #fff">
+		<div class = "itt-container">
+			<div class = "row row-pb-md">
+				<div class = "col-md-12 animate-box">
+					<h3>Search</h3>
+					<form>
+						<div class = "col-md-6">
+							<div class = "form-group">
+								<label class = "sr-only" for = "search-text">Search</label>
+								<input type = "text" name = "search-text" id = "search-text" class = "form-control" placeholder = "Search">
+							</div>
+						</div>
+						<div class = "col-md-6">
+							<div class = "form-group">
+								<label class = "sr-only" for = "graph-type">Graph Type</label>
+								<select name = "graph-type" id = "graph-type" class = "form-control">
+									<option value = "select">Graph Type</option>
+									<optgroup label = "Alchemy">
+										<option value = "alc1">Networked Nodes</option>
+									</optgroup>
+									<optgroup label = "Line">
+										<option value = "lin1">Simple Line Chart</option>
+										<option value = "lin2">Holes in Data</option>
+										<option value = "lin3">Filled Holes in Data</option>
+										<option value = "lin4">Only Whole Numbers</option>
+										<option value = "lin5">Line Scatter Diagram with Responsive Settings</option>
+										<option value = "lin6">Line Chart with Area</option>
+										<option value = "lin7">Bi-polar Line Chart with Area Only</option>
+										<option value = "lin8">Using Events to Replace Graphics</option>
+										<option value = "lin9">Advanced SMIL Animations</option>
+										<option value = "lin10">SVG Path Animation</option>
+										<option value = "lin11">Line Interpolation / Smoothing</option>
+										<option value = "lin12">Series Overrides</option>
+										<option value = "lin13">Time Series with Moment.js</option>
+									</optgroup>
+									<optgroup label = "Bar">
+										<option value = "bar1">Bi-polar Bar Chart</option>
+										<option value = "bar2">Overlapping Bars on Mobile</option>
+										<option value = "bar3">Add Peak Circles Using the Draw Events</option>
+										<option value = "bar4">Multi-line Labels</option>
+										<option value = "bar5">Stacked Bar Chart</option>
+										<option value = "bar6">Horizontal Bar Chart</option>
+										<option value = "bar7">Extreme Responsive Configuration</option>
+										<option value = "bar8">Distributed Series</option>
+										<option value = "bar9">Label Placement</option>
+									</optgroup>
+									<optgroup label = "Pie">
+										<option value = "pie1">Simple Pie Chart</option>
+										<option value = "pie2">Pie Chart with Custom Labels</option>
+										<option value = "pie3">Gauge Chart</option>
+										<option value = "pie4">Animating a Donut with SVG.Animate</option>
+									</optgroup>
+								</select>
+							</div>
+						</div>
+						<div class = "form-group">
+							<button class = "btn btn-primary btn-lg" id = "search-btn" <% if (error) { %> disabled="disabled"<% } %>>Search</button>
+							<% if (error) { %> <%= message %> <% } %>
+							<div id = "loader" class = "mdl-spinner mdl-spinner--single-color mdl-js-spinner col-md-push-1" />
+							<!-- <input type = "submit" value = "Send Message" class = "btn btn-primary btn-lg" id = "search-btn"> -->
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
+
+	</div>
+
+	<div id = "itt-features" class = "itt-graphs">
+		<div class = "itt-container">
+			<div class = "row">
+				<div class = "col-md-8 col-md-offset-2 text-center itt-heading animate-box">
+					<h2>Graphs</h2>
+					<p>Here are your graphs. This is what you've been waiting for, hmm?</p>
+				</div>
+			</div>
+			<div class = "row">
+				<div class = "col-md-12">
+					<!-- <div id = "loader" class = "mdl-progress mdl-js-progress mdl-progress__indeterminate is-active"></div> -->
+					<div id = "graph-container">
+						<div class = "alchemy" id = "alchemy"></div>
+						<div class = "ct-chart" id = "ct-chart"></div>
+					</div>
+					<!-- <button id = "reset-zoom-btn" style = "float: right;" class = "form-control">Reset Zoom</button> -->
+				</div>
+			</div>
+			<br><br>
+			<div class = "row">
+				<div class = "col-md-12 text-center animate-box">
+					<button class = "btn btn-primary btn-lg" id = "prev-graph-btn">Prev</button>
+					<span id = "positionGraph"></span>
+					<button class = "btn btn-primary btn-lg" id = "next-graph-btn">Next</button>
+					<!-- <input class = "mdl-slider mdl-js-slider" id = "slider" type = "range" min = "0" max = "100" value = "0" tabindex = "0"> -->
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div id = "itt-results" class = "itt-section">
+		<div class = "itt-container">
+			<div class = "row">
+				<div class = "col-md-8 col-md-offset-2 text-center itt-heading animate-box">
+					<h2>Raw Data</h2>
+					<p>If graphs aren't your jam, have a look at the raw data</p>
+				</div>
+			</div>
+			<div class = "row">
+				<div class = "col-md-12">
+					<div class = "tweet-results"></div>
+				</div>
+			</div>
+			<div class = "row">
+				<div class = "col-md-12 text-center animate-box">
+					<button class = "btn btn-primary btn-lg" id = "prev-data-btn">Prev</button>
+					<span id = "positionData"></span>
+					<button class = "btn btn-primary btn-lg" id = "next-data-btn">Next</button>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div id = "itt-subscribe">
+		<div class = "itt-container">
+			<div class = "row animate-box">
+				<div class = "col-md-8 col-md-offset-2 text-center itt-heading">
+					<h2>Contact</h2>
+					<p>Drop a mail if you need more information about this project, if you'd like to contribute, and/or if you have any feedback.</p>
+				</div>
+			</div>
+			<div class = "row animate-box">
+				<div class = "col-md-12">
+					<form class = "form-inline" method = "POST" action = "sendMessage">
+						<div class = "col-md-6">
+							<div class = "form-group">
+								<label for = "name" class = "sr-only">Name</label>
+								<input type = "text" class = "form-control" id = "name" placeholder = "Your Name">
+							</div>
+						</div>
+						<div class = "col-md-6">
+							<div class = "form-group">
+								<label for = "email" class = "sr-only">E-Mail</label>
+								<input type = "email" class = "form-control" id = "email" placeholder = "Your E-Mail">
+							</div>
+						</div>
+						<div class = "col-md-12">
+							<div class = "form-group">
+								<label for = "name" class = "sr-only">Message</label>
+								<textarea name = "message" id = "message" cols = "30" rows = "10" class = "form-control" placeholder = "Your Message"></textarea>
+							</div>
+						</div>
+						<div class = "col-md-4 col-sm-4">
+							<button type = "submit" class = "btn btn-default btn-block">Send Message</button>
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<footer id = "itt-footer" role = "contentinfo">
+		<div class = "itt-container">
+			<div class = "row row-p	b-md">
+
+				<div class = "col-md-4">
+					<div class = "itt-widget">
+						<h3>About Me</h3>
+						<p>I'm a 19 year old undergraduate student, currently studying <em>Information Technology</em> at Manipal Institute of Technology, Manipal.</p>
+					</div>
+				</div>
+
+				<div class = "col-md-4 col-md-push-1">
+					<div class = "itt-widget">
+						<h3>Links</h3>
+						<ul class = "itt-footer-links">
+							<li><a href = "https://github.com/asc42" target = "_blank"><i class = "fa fa-github">&nbsp;</i>GitHub</a></li>
+							<li><a href = "https://fb.com/adhirajsinghchauhan" target = "_blank"><i class = "fa fa-facebook-square">&nbsp;</i>Facebook</a></li>
+							<li><a href = "https://twitter.com/adhirajaddy1" target = "_blank"><i class = "fa fa-twitter">&nbsp;</i>Twitter</a></li>
+							<li><a href = "https://linkedin.com/in/adhirajsinghchauhan" target = "_blank"><i class = "fa fa-linkedin">&nbsp;</i>LinkedIn</a></li>
+						</ul>
+					</div>
+				</div>
+
+				<div class = "col-md-4">
+					<div class = "itt-widget">
+						<h3>Get In Touch</h3>
+						<ul class = "itt-quick-contact">
+							<li><a href = "tel://9591392237"><i class = "fa fa-phone"></i>+91 95913 92237</a></li>
+							<li><a href = "whatsapp://9560547016"><i class = "fa fa-whatsapp"></i>+91 95605 47016</a></li>
+							<li><a href = "mailto:adhirajsinghchauhan@gmail.com"><i class = "fa fa-envelope"></i>adhirajsinghchauhan@gmail.com</a></li>
+						</ul>
+					</div>
+				</div>
+
+			</div>
+
+			<div class = "row copyright">
+				<div class = "col-md-12">
+					<p class = "pull-left">
+						<small class = "block">&copy; 2016 Adhiraj Singh Chauhan</small>
+					</p>
+					<p class = "pull-right">
+						<ul class = "itt-social-icons pull-right">
+							<li><a href = "https://twitter.com/adhirajaddy1" target = "_blank"><i class = "fa fa-twitter"></i></a></li>
+							<li><a href = "https://fb.com/adhirajsinghchauhan" target = "_blank"><i class = "fa fa-facebook-official"></i></a></li>
+							<li><a href = "https://linkedin.com/in/adhirajsinghchauhan" target = "_blank"><i class = "fa fa-linkedin"></i></a></li>
+							<li><a href = "mailto:adhirajsinghchauhan@gmail.com"><i class = "fa fa-envelope"></i></a></li>
+						</ul>
+					</p>
+				</div>
+			</div>
+
+		</div>
+	</footer>
+	</div>
+
+	<div class = "gototop js-top">
+		<a href = "#" class = "js-gotop"><i class = "fa fa-angle-up"></i></a>
+	</div>
+
+	<script type = "text/javascript" src = "js/sentiment.js"></script>
+	<script src = "js/jquery.easing.1.3.js"></script>
+	<script src = "js/bootstrap.min.js"></script>
+	<script src = "js/jquery.waypoints.min.js"></script>
+	<script src = "js/owl.carousel.min.js"></script>
+	<!-- Main -->
+	<script src = "js/main.js"></script>
+
+	<!-- Template -->
+	<script type="text/html" id = "tweet_tmpl">
+		<div class = "demo-card-wide mdl-card mdl-shadow--4dp">
+			<div class = "mdl-card__title mdl-shadow--4dp" style = "background: url('{{=backgroundImgSrc}}') center / cover;">
+				<h2 class = "mdl-card__title-text">
+					<span class = "name">{{=name}}</span>
+				</h2>
+			</div>
+			<div class = "mdl-card__supporting-text">
+				<div class = "left">
+					<i class = "fa fa-quote-right" style = "color: #{{=profileLinkColor}}"></i>:&nbsp;&nbsp;{{=tweet}}
+					<br><br>
+					<i class = "fa fa-retweet" style = "color: #{{=profileLinkColor}}"></i>:&nbsp;&nbsp;{{=retweet}}
+					<br><br>
+					<i class = "fa fa-external-link" style = "color: #{{=profileLinkColor}}"></i>:&nbsp;&nbsp;<a href = "{{=tweetLink}}" target = "_blank" style = "color: rgba(0, 0, 0, .54);">{{=tweetId}}</a>
+					<br><br>
+					<i class = "fa fa-user" style = "color: #{{=profileLinkColor}}"></i>:&nbsp;&nbsp;<a href = "{{=tweetLink}}" target = "_blank" style = "color: rgba(0, 0, 0, .54);">{{=screenName}}</a>
+				</div>
+				<div class = "right">
+					<table class = "mdl-data-table mdl-js-data-table mdl-shadow--2dp">
+						<tbody>
+							<tr>
+								<td class = "mdl-data-table__cell--non-numeric">Score</td>
+								<td>{{=score}}</td>
+							</tr>
+							<tr>
+								<td class = "mdl-data-table__cell--non-numeric">Comparative</td>
+								<td>{{=comparative}}</td>
+							</tr>
+							<tr>
+								<td class = "mdl-data-table__cell--non-numeric">Favorited</td>
+								<td>{{=favorited}}</td>
+							</tr>
+							<tr>
+								<td class = "mdl-data-table__cell--non-numeric">Retweeted</td>
+								<td>{{=retweet}}</td>
+							</tr>
+							<tr>
+								<td class = "mdl-data-table__cell--non-numeric">Words Matched</td>
+								<td>{{=wordsMatched}}</td>
+							</tr>
+							<tr>
+								<td class = "mdl-data-table__cell--non-numeric">Positive Words</td>
+								<td>{{=positiveWords}}</td>
+							</tr>
+							<tr>
+								<td class = "mdl-data-table__cell--non-numeric">Negative Words</td>
+								<td>{{=negativeWords}}</td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+			</div>
+			<div class = "mdl-card__actions mdl-card--border">
+				<a class = "mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect" href = "{{=tweetLink}}" target = "_blank" style = "color: #{{=profileLinkColor}}">
+					Tweet
+				</a>
+				<a class = "mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect" href = "{{=userLink}}" target = "_blank" style = "color: #{{=profileLinkColor}}">
+					User
+				</a>
+			</div>
+		</div>
+	</script>
+
+	</body>
+</html>

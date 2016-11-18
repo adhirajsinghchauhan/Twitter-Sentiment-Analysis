@@ -1,0 +1,330 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+	<meta charset = "utf-8">
+	<meta http-equiv = "X-UA-Compatible" content = "IE = edge">
+	<title>Twitter Sentiment Analysis &mdash; ITT Project</title>
+	<meta name = "viewport" content = "width = device-width, initial-scale = 1">
+	<meta name = "description" content = "Twitter Sentiment Analysis" />
+	<meta name = "keywords" content = "twitter, sentiment, analysis, ITT, project" />
+	<meta name = "author" content = "Adhiraj Singh Chauhan" />
+
+  	<!-- Facebook and Twitter integration -->
+	<meta property = "og:title" content = "Twitter Sentiment Analysis" />
+	<meta property = "og:image" content = "" />
+	<meta property = "og:url" content = "" />
+	<meta property = "og:site_name" content = "" />
+	<meta property = "og:description" content = "" />
+	<meta name = "twitter:title" content = "Twitter Sentiment Analysis" />
+	<meta name = "twitter:image" content = "" />
+	<meta name = "twitter:url" content = "" />
+	<meta name = "twitter:card" content = "" />
+
+	<link rel = "stylesheet" href = "css/animate.css">
+	<link rel = "stylesheet" href = "css/icomoon.css">
+	<link rel = "stylesheet" href = "css/themify-icons.css">
+	<link rel = "stylesheet" href = "css/bootstrap.css">
+	<link rel = "stylesheet" href = "css/font-awesome.min.css">
+	<link rel = "stylesheet" href = "css/magnific-popup.css">
+	<link rel = "stylesheet" href = "css/owl.carousel.min.css">
+	<link rel = "stylesheet" href = "css/owl.theme.default.min.css">
+	<link rel = "stylesheet" href = "css/style.css">
+
+	<script src = "js/modernizr-2.6.2.min.js"></script>
+	<!-- FOR IE9 below -->
+	<!--[if lt IE 9]>
+	<script src = "js/respond.min.js"></script>
+	<![endif]-->
+
+	</head>
+	<body>
+
+	<div class = "itt-loader"></div>
+
+	<div id = "page">
+	<nav class = "itt-nav" role = "navigation">
+		<div class = "itt-container">
+			<div class = "row">
+				<div class = "col-md-12 text-right itt-contact">
+					<ul class = "">
+						<li><a href = "tel://9591392237"><i class = "fa fa-phone">&nbsp;</i>+91 95913 92237</a></li>
+						<li><a href = "https://twitter.com/adhirajaddy1" target = "_blank"><i class = "fa fa-twitter"></i></a></li>
+						<li><a href = "https://fb.com/adhirajsinghchauhan" target = "_blank"><i class = "fa fa-facebook"></i></a></li>
+						<li><a href = "mailto:adhirajsinghchauhan@gmail.com"><i class = "fa fa-envelope"></i></a></li>
+					</ul>
+				</div>
+			</div>
+			<div class = "row">
+				<div class = "col-sm-4 col-xs-12">
+					<div id = "itt-logo"><a href = "/">TSA<em>.</em></a></div>
+				</div>
+				<div class = "col-xs-8 text-right menu-1">
+					<ul>
+						<li><a href = "/">Home</a></li>
+						<li class = "active"><a href = "about">About</a></li>
+						<!-- <li class = "has-dropdown">
+							<a href = "services">Services</a>
+							<ul class = "dropdown">
+								<li><a href = "#">Web Design</a></li>
+								<li><a href = "#">eCommerce</a></li>
+								<li><a href = "#">Branding</a></li>
+								<li><a href = "#">API</a></li>
+							</ul>
+						</li>
+						<li class = "has-dropdown">
+							<a href = "#">Dropdown</a>
+							<ul class = "dropdown">
+								<li><a href = "#">HTML5</a></li>
+								<li><a href = "#">CSS3</a></li>
+								<li><a href = "#">Sass</a></li>
+								<li><a href = "#">jQuery</a></li>
+							</ul>
+						</li> -->
+						<li><a href = "account">Account</a></li>
+						<li><a class = "js-gotocontact">Contact</a></li>
+					</ul>
+				</div>
+			</div>
+
+		</div>
+	</nav>
+
+	<header id = "itt-header" class = "itt-cover itt-cover-xs" role = "banner" style = "background-image:url(images/img_bg_1.jpg);">
+		<div class = "overlay"></div>
+		<div class = "itt-container">
+			<div class = "row">
+				<div class = "col-md-8 col-md-offset-2 text-center">
+					<div class = "display-t">
+						<div class = "display-tc">
+							<h1 class = "animate-box" data-animate-effect = "fadeInUp">About The Project</h1>
+							<h2 class = "animate-box" data-animate-effect = "fadeInUp">This is my ITT project.</h2>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</header>
+
+	<div id = "itt-history" class = "itt-section border-bottom animate-box">
+		<div class = "itt-container">
+
+			<div class = "row">
+				<div class = "col-md-8 col-md-offset-2 text-center itt-heading">
+					<h2>Information</h2>
+					<!-- <p>Dignissimos asperiores vitae velit veniam totam fuga molestias accusamus alias autem provident. Odit ab aliquam dolor eius.</p> -->
+				</div>
+			</div>
+
+			<div class = "row row-pb-md">
+				<div class = "col-md-6">
+					<p>Sentiment analysis is a growing area of Natural Language Processing (NLP). Text mining and natural language processing have received a lot of focus over the past years, with more and more companies focusing on machine learning and enhancing the way computers understand human-related data.</p>
+					<p>This project is based on concepts of text mining (one of the applications of NLP) and data analytics. The Twitter Streaming API will be used to download tweets related to specific keywords, which are analyzed by algorithms implemented in JavaScript.</p>
+				</div>
+				<div class = "col-md-6">
+					<p>The Twitter Streaming API response would be in a JSON format, which will be parsed and analyzed in JavaScript. Twitter data constitutes a rich source that can be used for capturing information about any topic imaginable. However, since the length of characters in a single tweet is limited to 140, analyzing data will be trickier.</p>
+					<p>That’s where machine learning comes in. By tokenizing the tweets (extracting their bigrams), extracting hashtags, URLs, usernames and emoticons, data analytics is made easier (eg, emoticons like <b>:)</b> have a positive polarity while emoticons like <b>:(</b> have a negative polarity. <b>:|</b> would be a neutral emoticon).</p>
+				</div>
+				<div class = "col-md-12">
+					<p>This data can be used in different use cases such as finding trends related to a specific keyword, measuring brand sentiment, and gathering feedback about new products and services. The data insights can be visualized in the web browser in the form of graphs.</p>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div id = "itt-features">
+		<div class = "itt-container">
+			<div class = "row">
+				<div class = "col-md-8 col-md-offset-2 text-center itt-heading animate-box">
+					<h2>Technologies Used</h2>
+				</div>
+			</div>
+			<div class = "row">
+				<div class = "col-md-4 col-sm-6">
+					<div class = "feature-center animate-box" data-animate-effect = "fadeIn">
+						<span class = "icon">
+							<i>N</i>
+						</span>
+						<h3>Node.js</h3>
+						<p>A JavaScript runtime built on Chrome's V8 JavaScript engine. Node.js uses an event-driven, non-blocking I/O model that makes it lightweight and efficient.</p>
+					</div>
+				</div>
+				<div class = "col-md-4 col-sm-6">
+					<div class = "feature-center animate-box" data-animate-effect = "fadeIn">
+						<span class = "icon">
+							<i>M</i>
+						</span>
+						<h3>MongoDB</h3>
+						<p>MongoDB is an open-source document database that provides high performance, high availability, and automatic scaling.</p>
+					</div>
+				</div>
+				<div class = "col-md-4 col-sm-6">
+					<div class = "feature-center animate-box" data-animate-effect = "fadeIn">
+						<span class = "icon">
+							<i>E</i>
+						</span>
+						<h3>Express</h3>
+						<p>A minimal and flexible Node.js web application framework that provides a robust set of features for web and mobile applications.</p>
+					</div>
+				</div>
+				<!-- <div class = "col-md-3 col-sm-6">
+					<div class = "feature-center animate-box" data-animate-effect = "fadeIn">
+						<span class = "icon">
+							<i class = "ti-ruler-pencil"></i>
+						</span>
+						<h3>Web Design</h3>
+						<p>Dignissimos asperiores vitae velit veniam totam fuga molestias accusamus alias autem provident. </p>
+					</div>
+				</div> -->
+			</div>
+		</div>
+	</div>
+
+	<div id = "itt-team" class = "itt-section">
+		<div class = "itt-container">
+			<div class = "row animate-box">
+				<div class = "col-md-8 col-md-offset-2 text-center itt-heading">
+					<h2>Meet The Team</h2>
+				</div>
+			</div>
+
+			<div class = "row">
+
+				<div class = "col-md-12 animate-box" data-animate-effect = "fadeIn">
+					<div class = "itt-staff">
+						<img src = "images/person_1.jpg">
+						<h3>Adhiraj Singh Chauhan</h3>
+						<strong class = "role">Project Head, Web Developer</strong>
+						<p>Yep, one man team. I did everything, because nobody does work in group projects anyway.</p>
+						<ul class = "itt-social-icons">
+							<li><a href = "https://fb.com/adhirajsinghchauhan" target = "_blank"><i class = "fa fa-facebook"></i></a></li>
+							<li><a href = "https://twitter.com/adhirajaddy1" target = "_blank"><i class = "fa fa-twitter"></i></a></li>
+							<li><a href = "https://linkedin.com/in/adhirajsinghchauhan" target = "_blank"><i class = "fa fa-linkedin"></i></a></li>
+							<li><a href = "https://github.com/asc42" target = "_blank"><i class = "fa fa-github"></i></a></li>
+						</ul>
+					</div>
+				</div>
+				<div class = "clearfix visible-sm-block"></div>
+			</div>
+
+		</div>
+	</div>
+
+	<div id = "itt-subscribe">
+		<div class = "itt-container">
+			<div class = "row animate-box">
+				<div class = "col-md-8 col-md-offset-2 text-center itt-heading">
+					<h2>Contact</h2>
+					<p>Drop a mail if you need more information about this project, if you'd like to contribute, and/or if you have any feedback.</p>
+				</div>
+			</div>
+			<div class = "row animate-box">
+				<div class = "col-md-12">
+					<form class = "form-inline" method = "POST" action = "sendMessage">
+						<div class = "col-md-6">
+							<div class = "form-group">
+								<label for = "name" class = "sr-only">Name</label>
+								<input type = "text" class = "form-control" id = "name" placeholder = "Your Name">
+							</div>
+						</div>
+						<div class = "col-md-6">
+							<div class = "form-group">
+								<label for = "email" class = "sr-only">E-Mail</label>
+								<input type = "email" class = "form-control" id = "email" placeholder = "Your E-Mail">
+							</div>
+						</div>
+						<div class = "col-md-12">
+							<div class = "form-group">
+								<label for = "name" class = "sr-only">Message</label>
+								<textarea name = "message" id = "message" cols = "30" rows = "10" class = "form-control" placeholder = "Your Message"></textarea>
+							</div>
+						</div>
+						<div class = "col-md-4 col-sm-4">
+							<button type = "submit" class = "btn btn-default btn-block">Send Message</button>
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<footer id = "itt-footer" role = "contentinfo">
+		<div class = "itt-container">
+			<div class = "row row-p	b-md">
+
+				<div class = "col-md-4">
+					<div class = "itt-widget">
+						<h3>About Me</h3>
+						<p>I'm a 19 year old undergraduate student, currently studying <em>Information Technology</em> at Manipal Institute of Technology, Manipal.</p>
+					</div>
+				</div>
+
+				<div class = "col-md-4 col-md-push-1">
+					<div class = "itt-widget">
+						<h3>Links</h3>
+						<ul class = "itt-footer-links">
+							<li><a href = "https://github.com/asc42" target = "_blank"><i class = "fa fa-github">&nbsp;</i>GitHub</a></li>
+							<li><a href = "https://fb.com/adhirajsinghchauhan" target = "_blank"><i class = "fa fa-facebook-square">&nbsp;</i>Facebook</a></li>
+							<li><a href = "https://twitter.com/adhirajaddy1" target = "_blank"><i class = "fa fa-twitter">&nbsp;</i>Twitter</a></li>
+							<li><a href = "https://linkedin.com/in/adhirajsinghchauhan" target = "_blank"><i class = "fa fa-linkedin">&nbsp;</i>LinkedIn</a></li>
+						</ul>
+					</div>
+				</div>
+
+				<div class = "col-md-4">
+					<div class = "itt-widget">
+						<h3>Get In Touch</h3>
+						<ul class = "itt-quick-contact">
+							<li><a href = "tel://9591392237"><i class = "fa fa-phone"></i>+91 95913 92237</a></li>
+							<li><a href = "whatsapp://9560547016"><i class = "fa fa-whatsapp"></i>+91 95605 47016</a></li>
+							<li><a href = "mailto:adhirajsinghchauhan@gmail.com"><i class = "fa fa-envelope"></i>adhirajsinghchauhan@gmail.com</a></li>
+						</ul>
+					</div>
+				</div>
+
+			</div>
+
+			<div class = "row copyright">
+				<div class = "col-md-12">
+					<p class = "pull-left">
+						<small class = "block">&copy; 2016 Adhiraj Singh Chauhan</small>
+					</p>
+					<p class = "pull-right">
+						<ul class = "itt-social-icons pull-right">
+							<li><a href = "https://twitter.com/adhirajaddy1" target = "_blank"><i class = "fa fa-twitter"></i></a></li>
+							<li><a href = "https://fb.com/adhirajsinghchauhan" target = "_blank"><i class = "fa fa-facebook-official"></i></a></li>
+							<li><a href = "https://linkedin.com/in/adhirajsinghchauhan" target = "_blank"><i class = "fa fa-linkedin"></i></a></li>
+							<li><a href = "mailto:adhirajsinghchauhan@gmail.com"><i class = "fa fa-envelope"></i></a></li>
+						</ul>
+					</p>
+				</div>
+			</div>
+
+		</div>
+	</footer>
+	</div>
+
+	<div class = "gototop js-top">
+		<a class = "js-gotop"><i class = "fa fa-angle-up"></i></a>
+	</div>
+
+	<!-- jQuery -->
+	<script src = "js/jquery.min.js"></script>
+	<!-- jQuery Easing -->
+	<script src = "js/jquery.easing.1.3.js"></script>
+	<!-- Bootstrap -->
+	<script src = "js/bootstrap.min.js"></script>
+	<!-- Waypoints -->
+	<script src = "js/jquery.waypoints.min.js"></script>
+	<!-- Carousel -->
+	<script src = "js/owl.carousel.min.js"></script>
+	<!-- countTo -->
+	<script src = "js/jquery.countTo.js"></script>
+	<!-- Magnific Popup -->
+	<script src = "js/jquery.magnific-popup.min.js"></script>
+	<script src = "js/magnific-popup-options.js"></script>
+	<!-- Main -->
+	<script src = "js/main.js"></script>
+
+	</body>
+</html>
+

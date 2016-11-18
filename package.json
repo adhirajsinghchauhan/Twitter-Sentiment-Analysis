@@ -1,0 +1,30 @@
+{
+	"name": "TwitterSentimentAnalysis",
+	"version": "0.0.1",
+	"private": true,
+	"scripts": {
+		"start": "nodemon ./bin/www"
+	},
+	"dependencies": {
+		"body-parser": "latest",
+		"chartist-plugin-threshold": "latest",
+		"chartist-plugin-tooltips": "latest",
+		"chartist-plugin-zoom": "latest",
+		"cookie-parser": "latest",
+		"debug": "latest",
+		"diskdb": "latest",
+		"ejs": "latest",
+		"express": "latest",
+		"mongodb": "latest",
+		"node-chartist": "latest",
+		"sentiment": "latest",
+		"serve-favicon": "latest",
+		"twitter": "latest"
+	},
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/asc42/Twitter-Sentiment-Analysis.git"
+	},
+	"author": "asc42",
+	"license": "MIT License"
+}
