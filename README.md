@@ -13,7 +13,7 @@ The data insights can be visualized in the web browser in the form of graphs.
 
 ## Steps for installation / use
 1. Install [Node.js][nodejs] for your operating system
-2. Clone this repository into any directory: ```git clone https://github.com/asc42/Twitter-Sentiment-Analysis.git```
+2. Clone this repository into any directory: ```git clone https://github.com/adhirajsinghchauhan/Twitter-Sentiment-Analysis.git```
 3. ```cd``` into the repo's directory: ```cd Twitter-Sentiment-Analysis```
 4. Run ```npm install``` to install all dependencies for this project
 5. Once npm installs all dependencies successfully, run ```npm start``` to start the server at ```localhost:80```
