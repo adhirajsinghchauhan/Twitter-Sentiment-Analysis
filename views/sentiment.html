@@ -26,10 +26,16 @@
 	<script type = "text/javascript" src = "js/lodash.js"></script>
 	<script type = "text/javascript" src = "js/alchemy.js"></script>
 	<script src = "js/modernizr-2.6.2.min.js"></script>
-	<script src = "js/chartist.min.js"></script>
-	<script src = "js/chartist-plugin-tooltip.min.js"></script>
-	<script src = "js/chartist-plugin-threshold.min.js"></script>
-	<script src = "js/chartist-plugin-zoom.min.js"></script>
+	<script src = "/node_modules/chartist/dist/chartist.min.js"></script>
+	<script src = "/node_modules/chartist-plugin-tooltips/dist/chartist-plugin-tooltip.min.js"></script>
+	<script src = "/node_modules/chartist-plugin-threshold/dist/chartist-plugin-threshold.min.js"></script>
+	<script src = "/node_modules/chartist-plugin-axistitle/dist/chartist-plugin-axistitle.min.js"></script>
+	<script src = "/node_modules/topojson/dist/topojson.min.js"></script>
+	<script src = "/node_modules/datamaps/dist/datamaps.world.min.js"></script>
+	<script src = "/node_modules/wordcloud/src/wordcloud2.js"></script>
+	<script src = "/node_modules/moodjs/dist/mood-browser.min.js"></script>
+	<script src = "js/d3.chart.js"></script>
+	<script src = "js/movie-network.js"></script>
 	<!-- FOR IE9 below -->
 	<!--[if lt IE 9]>
 	<script src = "js/respond.min.js"></script>
@@ -42,8 +48,9 @@
 	<link rel = "stylesheet" href = "css/material.min.css">
 	<link rel = "stylesheet" href = "css/sentiment.css">
 	<link rel = "stylesheet" href = "css/style.css">
-	<link rel = "stylesheet" href = "css/chartist.min.css">
-	<link rel = "stylesheet" href = "css/chartist-plugin-tooltip.css">
+	<link rel = "stylesheet" href = "css/movie-network.css">
+	<link rel = "stylesheet" href = "/node_modules/chartist/dist/chartist.min.css">
+	<link rel = "stylesheet" href = "/node_modules/chartist-plugin-tooltips/dist/chartist-plugin-tooltip.css">
 
 	</head>
 	<body>
@@ -147,7 +154,7 @@
 										<option value = "lin10">SVG Path Animation</option>
 										<option value = "lin11">Line Interpolation / Smoothing</option>
 										<option value = "lin12">Series Overrides</option>
-										<option value = "lin13">Time Series with Moment.js</option>
+										<option value = "lin13">Boxplot</option>
 									</optgroup>
 									<optgroup label = "Bar">
 										<option value = "bar1">Bi-polar Bar Chart</option>
@@ -172,18 +179,39 @@
 						<div class = "form-group">
 							<button class = "btn btn-primary btn-lg" id = "search-btn" <% if (error) { %> disabled="disabled"<% } %>>Search</button>
 							<% if (error) { %> <%= message %> <% } %>
-							<div id = "loader" class = "mdl-spinner mdl-spinner--single-color mdl-js-spinner col-md-push-1" />
+							<div id = "loader" class = "mdl-spinner mdl-spinner--single-color mdl-js-spinner" />
 							<!-- <input type = "submit" value = "Send Message" class = "btn btn-primary btn-lg" id = "search-btn"> -->
 						</div>
 					</form>
 				</div>
 			</div>
 		</div>
-
 	</div>
 
-	<div id = "itt-features" class = "itt-graphs">
+	<div id = "itt-mood" class = "itt-section">
 		<div class = "itt-container">
+			<div class = "row">
+				<div class = "col-md-8 col-md-offset-2 text-center itt-heading animate-box">
+					<h2>Overall Mood</h2>
+					<p>Was the user response happy, sad or neutral?</p>
+				</div>
+			</div>
+			<div class = "row">
+				<div class = "col-md-4 text-center">
+					<div class = "happyFace mood"></div>
+				</div>
+				<div class = "col-md-4 text-center">
+					<div class = "neutralFace mood"></div>
+				</div>
+				<div class = "col-md-4 text-center">
+					<div class = "sadFace mood"></div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div id = "itt-graph" class = "itt-section" style = "background: #fff">
+		<div class = "itt-container itt-graphs">
 			<div class = "row">
 				<div class = "col-md-8 col-md-offset-2 text-center itt-heading animate-box">
 					<h2>Graphs</h2>
@@ -192,12 +220,11 @@
 			</div>
 			<div class = "row">
 				<div class = "col-md-12">
-					<!-- <div id = "loader" class = "mdl-progress mdl-js-progress mdl-progress__indeterminate is-active"></div> -->
 					<div id = "graph-container">
 						<div class = "alchemy" id = "alchemy"></div>
 						<div class = "ct-chart" id = "ct-chart"></div>
+						<div class = "boxplot"></div>
 					</div>
-					<!-- <button id = "reset-zoom-btn" style = "float: right;" class = "form-control">Reset Zoom</button> -->
 				</div>
 			</div>
 			<br><br>
@@ -206,7 +233,38 @@
 					<button class = "btn btn-primary btn-lg" id = "prev-graph-btn">Prev</button>
 					<span id = "positionGraph"></span>
 					<button class = "btn btn-primary btn-lg" id = "next-graph-btn">Next</button>
-					<!-- <input class = "mdl-slider mdl-js-slider" id = "slider" type = "range" min = "0" max = "100" value = "0" tabindex = "0"> -->
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div id = "itt-wordcloud" class = "itt-section">
+		<div class = "itt-container itt-graphs">
+			<div class = "row">
+				<div class = "col-md-8 col-md-offset-2 text-center itt-heading animate-box">
+					<h2>Word Cloud</h2>
+					<p>Most frequent words, rendered in real-time</p>
+				</div>
+			</div>
+			<div class = "row">
+				<div class = "col-md-12 text-center">
+					<canvas width = "1920" height = "1080" id = "canvas"></canvas>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div id = "itt-map" class = "itt-section" style = "background: #fff">
+		<div class = "itt-container itt-graphs">
+			<div class = "row">
+				<div class = "col-md-8 col-md-offset-2 text-center itt-heading animate-box">
+					<h2>World Map</h2>
+					<p>User locations put on the world map</p>
+				</div>
+			</div>
+			<div class = "row">
+				<div class = "col-md-12">
+					<div id = "map-container"></div>
 				</div>
 			</div>
 		</div>
@@ -288,7 +346,7 @@
 					<div class = "itt-widget">
 						<h3>Links</h3>
 						<ul class = "itt-footer-links">
-							<li><a href = "https://github.com/asc42" target = "_blank"><i class = "fa fa-github">&nbsp;</i>GitHub</a></li>
+							<li><a href = "https://github.com/adhirajsinghchauhan" target = "_blank"><i class = "fa fa-github">&nbsp;</i>GitHub</a></li>
 							<li><a href = "https://fb.com/adhirajsinghchauhan" target = "_blank"><i class = "fa fa-facebook-square">&nbsp;</i>Facebook</a></li>
 							<li><a href = "https://twitter.com/adhirajaddy1" target = "_blank"><i class = "fa fa-twitter">&nbsp;</i>Twitter</a></li>
 							<li><a href = "https://linkedin.com/in/adhirajsinghchauhan" target = "_blank"><i class = "fa fa-linkedin">&nbsp;</i>LinkedIn</a></li>

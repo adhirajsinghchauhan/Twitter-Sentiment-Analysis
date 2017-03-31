@@ -16,9 +16,9 @@ var config = {
 	consumer_secret: 'uipMUpSHve9tvJgajFrInbcANVr8qPXGw6Bhhe5XNR49wtkl14',
 	access_token_key: '280550165-kyepTVsp0ScBpNeQXjKO1EQ0agsdcZS8XGVnNuZg',
 	access_token_secret: 'c1z8ke9G41OpeZuCmMXtsEj3beLa9mxVc2plMisn80Pjk',
-	// request_options: {
-	// 	proxy: 'http://172.16.19.10:80'
-	// }
+	request_options: {
+		proxy: 'http://172.16.19.10:80/'
+	}
 };
 
 var stemmer = (function() {
@@ -316,28 +316,29 @@ var analyzeTweets = function(tweets, callback) {
 	var dbData = [];
 
 	json.response = [];
+	if (tweets.statuses != null) {
+		for (var i = 0; i < tweets.statuses.length; i++) {
+			var resp = {};
 
-	for (var i = 0; i < tweets.statuses.length; i++) {
-		var resp = {};
+			resp.tweet = tweets.statuses[i];
+			resp.sentiment = sentimentAnalysis(tweets.statuses[i].text);
+			dbData.push({
+				user: {
+					name: resp.tweet.user.name,
+					screen: resp.tweet.user.screen_name,
+					dp: resp.tweet.user.profile_image_url
+				},
+				urls: resp.tweet.entities.urls,
+				hashtags: resp.tweet.entities.hashtags,
+				tweet: resp.tweet,
+				score: resp.sentiment.score,
+				sentiment: resp.sentiment
+			});
+			json.response.push(resp);
+		};
 
-		resp.tweet = tweets.statuses[i];
-		resp.sentiment = sentimentAnalysis(tweets.statuses[i].text);
-		dbData.push({
-			user: {
-				name: resp.tweet.user.name,
-				screen: resp.tweet.user.screen_name,
-				dp: resp.tweet.user.profile_image_url
-			},
-			urls: resp.tweet.entities.urls,
-			hashtags: resp.tweet.entities.hashtags,
-			tweet: resp.tweet,
-			score: resp.sentiment.score,
-			sentiment: resp.sentiment
-		});
-		json.response.push(resp);
-	};
-
-	return callback(dbData);
+		return callback(dbData);
+	}
 }
 
 module.exports = function(text, callback) {
@@ -347,14 +348,14 @@ module.exports = function(text, callback) {
 
 	twitterClient.get('search/tweets', {
 		q: text,
+		// lang: 'en',
 		count: 100
 	}, function(error, tweets, response) {
-		cleanTweets(tweets, function(cleanedTweets) {
-			analyzeTweets(cleanedTweets, function(dbData) {
-				callback(dbData);
-			});
+		// cleanTweets(tweets, function(cleanedTweets) {
+		analyzeTweets(tweets, function(dbData) {
+			db.sentiments.save(dbData);
+			callback(dbData);
 		});
-		// db.sentiments.save(dbData);
-		// callback(dbData);
+		// });
 	});
 }

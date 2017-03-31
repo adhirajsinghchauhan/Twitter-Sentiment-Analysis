@@ -7,24 +7,34 @@
 	},
 	"dependencies": {
 		"body-parser": "latest",
+		"chartist-plugin-axistitle": "latest",
+		"chartist-plugin-pointlabels": "latest",
 		"chartist-plugin-threshold": "latest",
 		"chartist-plugin-tooltips": "latest",
 		"chartist-plugin-zoom": "latest",
+		"clusterfck": "latest",
 		"cookie-parser": "latest",
+		"d3-cloud": "latest",
+		"d3-dispatch": "latest",
+		"datamaps": "latest",
 		"debug": "latest",
 		"diskdb": "latest",
 		"ejs": "latest",
 		"express": "latest",
+		"leven": "latest",
 		"mongodb": "latest",
+		"moodjs": "latest",
 		"node-chartist": "latest",
 		"sentiment": "latest",
 		"serve-favicon": "latest",
-		"twitter": "latest"
+		"topojson": "latest",
+		"twitter": "latest",
+		"wordcloud": "latest"
 	},
 	"repository": {
 		"type": "git",
-		"url": "https://github.com/asc42/Twitter-Sentiment-Analysis.git"
+		"url": "https://github.com/adhirajsinghchauhan/Twitter-Sentiment-Analysis.git"
 	},
-	"author": "asc42",
+	"author": "adhirajsinghchauhan",
 	"license": "MIT License"
 }
